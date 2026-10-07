@@ -61,9 +61,34 @@ $$t = \begin{bmatrix} t_1 & t_2 & \dots & t_{N+1} \end{bmatrix} \in \mathbb{R}^{
 
 Decision matrices are flattened column-wise ($\text{vec}$) and vertically stacked into a single primal vector $W$:
 
-$$\text{vec}(X) = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{N+1} \end{bmatrix} \in \mathbb{R}^{n_x(N+1) \times 1}, \quad \text{vec}(U) = \begin{bmatrix} u_1 \\ u_2 \\ \vdots \\ u_N \end{bmatrix} \in \mathbb{R}^{n_u N \times 1}$$
+$$
+\text{vec}(X) = 
+\begin{bmatrix} x_1 \\ 
+x_2 \\ 
+\vdots \\ 
+x_{N+1} 
+\end{bmatrix} 
+\in \mathbb{R}^{n_x(N+1) \times 1} 
+$$
 
-$$W = \begin{bmatrix} \text{vec}(X) \\ \text{vec}(U) \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}$$
+$$ 
+\text{vec}(U) = 
+\begin{bmatrix} u_1 \\ 
+u_2 \\ 
+\vdots \\ 
+u_N 
+\end{bmatrix} 
+\in \mathbb{R}^{n_u N \times 1}
+$$
+
+$$
+W = 
+\begin{bmatrix} 
+\text{vec}(X) \\ 
+\text{vec}(U) 
+\end{bmatrix} 
+\in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}
+$$
 
 ---
 
