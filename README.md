@@ -273,7 +273,18 @@ To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum
 
 ### Benchmark System Dynamics
 
-The continuous-time state vector $x(t) = \begin{bmatrix} x_1(t) & x_2(t) \end{bmatrix}^T \in \mathbb{R}^{2 \times 1}$ and control input $u(t) \in \mathbb{R}^{1 \times 1}$ are governed by:
+The continuous-time state vector 
+
+$$
+x(t) = 
+\begin{bmatrix} 
+x_1(t) & 
+x_2(t) 
+\end{bmatrix}^T 
+\in \mathbb{R}^{2 \times 1}
+$$
+
+and control input $u(t) \in \mathbb{R}^{1 \times 1}$ are governed by:
 
 $$
 \dot{x}(t) 
