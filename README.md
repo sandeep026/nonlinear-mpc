@@ -216,16 +216,16 @@ x_1 - \bar{x}_0 \\
 = \mathbf{0}
 $$
 
-where 
+where
 
 $$
-\text{vec}(\mathbf{D}) 
-= \begin{bmatrix} 
-d_1 \\ 
-d_2 \\ 
-\vdots \\ 
-d_N 
-\end{bmatrix} 
+\text{vec}(\mathbf{D}) =
+\begin{bmatrix}
+d_1 \\
+d_2 \\
+\vdots \\
+d_N
+\end{bmatrix}
 \in \mathbb{R}^{n_x N \times 1}
 $$.
 
