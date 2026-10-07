@@ -233,7 +233,15 @@ $$.
 
 Repeated matrix bounds across horizon:
 
-$$\mathbf{X}_{lb} = \begin{bmatrix} x_{lb} & x_{lb} & \dots & x_{lb} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}, \quad \mathbf{X}_{ub} = \begin{bmatrix} x_{ub} & x_{ub} & \dots & x_{ub} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}$$
+$$
+\mathbf{X}_{lb} = 
+\begin{bmatrix} x_{lb} & x_{lb} & \dots & x_{lb} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}
+$$
+
+$$
+\mathbf{X}_{ub} =
+\begin{bmatrix} x_{ub} & x_{ub} & \dots & x_{ub} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}
+$$
 
 $$\mathbf{U}_{lb} = \begin{bmatrix} u_{lb} & u_{lb} & \dots & u_{lb} \end{bmatrix} \in \mathbb{R}^{n_u \times N}, \quad \mathbf{U}_{ub} = \begin{bmatrix} u_{ub} & u_{ub} & \dots & u_{ub} \end{bmatrix} \in \mathbb{R}^{n_u \times N}$$
 
