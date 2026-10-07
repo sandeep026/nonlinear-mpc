@@ -21,7 +21,7 @@ This document provides the complete, mathematically rigorous formulation of the 
 | $n_x$ | State vector dimension | Integer ($\mathbb{N}_{>0}$) | Scalar |
 | $n_u$ | Control input vector dimension | Integer ($\mathbb{N}_{>0}$) | Scalar |
 | $N$ | Prediction horizon steps | Integer ($\mathbb{N}_{>0}$) | Scalar |
-| $T_s$ | Integration sampling time step | Float ($\mathbb{R}_{>0}$) | Scalar |
+| $T_s$ |  sampling time | Float ($\mathbb{R}_{>0}$) | Scalar |
 | $Q$ | Stage state weighting matrix | Symmetric PSD ($Q = Q^T \succeq 0$) | $\mathbb{R}^{n_x \times n_x}$ |
 | $Q_{end}$ | Terminal state weighting matrix | Symmetric PSD ($Q_{end} = Q_{end}^T \succeq 0$) | $\mathbb{R}^{n_x \times n_x}$ |
 | $R$ | Control input weighting matrix | Symmetric PD ($R = R^T \succ 0$) | $\mathbb{R}^{n_u \times n_u}$ |
