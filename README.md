@@ -294,15 +294,17 @@ To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum
 
 $$
 \bar{x}_0 = 
-\begin{bmatrix} \pi & 0 
-\end{bmatrix}^T
-$$ 
+\begin{bmatrix} \pi \\
+ 0 
+\end{bmatrix}
+$$
 
 to the origin 
 
 $$
-\begin{bmatrix} 0 & 0 
-\end{bmatrix}^T
+\begin{bmatrix} 0 \\ 
+0 
+\end{bmatrix}
 $$
 
 ---
