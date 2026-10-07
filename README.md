@@ -157,12 +157,18 @@ for each method is:
 
 ### 4. Hermite-Simpson Integration (`her_sim`)
 
-* **Midpoint Matrices:**
-  * $X_m = \frac{1}{2}(X_r + X_l) + \frac{T_s}{8}(\mathbf{F}_l - \mathbf{F}_r) \in \mathbb{R}^{n_x \times N}$
+**Midpoint Matrices:**
+$$
+X_m = \frac{1}{2}(X_r + X_l) + \frac{T_s}{8}(\mathbf{F}_l - \mathbf{F}_r) \in \mathbb{R}^{n_x \times N}
+$$
   
-  * $t_m = \frac{1}{2}(t_r + t_l) \in \mathbb{R}^{1 \times N}$
+$$
+t_m = \frac{1}{2}(t_r + t_l) \in \mathbb{R}^{1 \times N}
+$$
   
-  * $$\mathbf{F}_m = \begin{bmatrix} f(t_{m, 1}, x_{m, 1}, u_1) & f(t_{m,2}, x_{m, 2}, u_2) & \dots & f(t_{m, N}, x_{m, N}, u_N) \end{bmatrix} \in \mathbb{R}^{n_x \times N}$$
+$$
+\mathbf{F}_m = \begin{bmatrix} f(t_{m, 1}, x_{m, 1}, u_1) & f(t_{m,2}, x_{m, 2}, u_2) & \dots & f(t_{m, N}, x_{m, N}, u_N) \end{bmatrix} \in \mathbb{R}^{n_x \times N}
+$$
 
 * **Stage Defect:** $d_i = (x_{i+1} - x_i) - \frac{T_s}{6} \left[ f(t_i, x_i, u_i) + 4 f(t_{m, i}, x_{m, i}, u_i) + f(t_{i+1}, x_{i+1}, u_i) \right]$
 * **Defect Matrix:** $\mathbf{D} = (X_r - X_l) - \frac{T_s}{6} (\mathbf{F}_l + 4 \mathbf{F}_m + \mathbf{F}_r)$
