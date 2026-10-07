@@ -546,3 +546,7 @@ def closed_loop():
 if __name__ == "__main__":
     closed_loop()
 ```    
+
+<p align="center">
+  <img src="nmpc.png" alt="Alt text">
+</p>
