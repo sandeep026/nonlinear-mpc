@@ -278,9 +278,9 @@ The continuous-time state vector
 $$
 x(t) = 
 \begin{bmatrix} 
-x_1(t) & 
+x_1(t) \\ 
 x_2(t) 
-\end{bmatrix}^T 
+\end{bmatrix} 
 \in \mathbb{R}^{2 \times 1}
 $$
 
