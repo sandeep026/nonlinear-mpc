@@ -337,17 +337,11 @@ $$
 
 ### Receding Horizon Execution Loop
 
-At each simulation time step $k \in \{0, 1, \dots, N_{sim}-1\}$:
+At each simulation time step $ k \in \{0, 1, \dots, N_{sim}-1\} $ :
 
-1. **Solve NLP:** Compute optimal control
-   1. $$
-      U^* = \begin{bmatrix} 
-      u_1^* & u_2^* & \dots & u_N^*
-      \end{bmatrix}
-      $$ 
-    using `nmpc_fun`.
-2. **Apply Control:** Extract first control input $u_{apply} = u_1^*$.
-3. **Plant Simulation:** Advance system state $= \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{\text{apply}})$
+1. **Solve NLP:** Compute optimal control using `nmpc_fun`.
+2. **Apply Control:** Extract first control input $u_1^*$.
+3. **Plant Simulation:** Advance system state
 4. **Shift Horizon:** Update guess matrices $(X_g, U_g, \lambda_g)$ for step $k+1$.
 
 ---
