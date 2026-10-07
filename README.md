@@ -273,29 +273,29 @@ To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum
 
 ### Benchmark System Dynamics
 
-The continuous-time state vector 
+The continuous-time state vector
 
 $$
-x(t) = 
-\begin{bmatrix} 
-x_1(t) \\ 
-x_2(t) 
-\end{bmatrix} 
+x(t) =
+\begin{bmatrix}
+x_1(t) \\
+x_2(t)
+\end{bmatrix}
 \in \mathbb{R}^{2 \times 1}
 $$
 
 and control input $u(t) \in \mathbb{R}^{1 \times 1}$ are governed by:
 
 $$
-\dot{x}(t) 
+\dot{x}(t)
 = f(t, x, u) 
-= \begin{bmatrix} 
-\dot{x}_1 \\ 
-\dot{x}_2 
-\end{bmatrix} 
+= \begin{bmatrix}
+\dot{x}_1 \\
+\dot{x}_2
+\end{bmatrix}
 = \begin{bmatrix} x_2 \\
- \sin(x_1) - 0.1 x_2 + u \cos(x_2) 
- \end{bmatrix}
+ \sin(x_1) - 0.1 x_2 + u \cos(x_2)
+\end{bmatrix}
  $$
 
 ---
@@ -316,9 +316,17 @@ $$
 
 At each simulation time step $k \in \{0, 1, \dots, N_{sim}-1\}$:
 
-1. **Solve NLP:** Compute optimal control $U^* = \begin{bmatrix} u_1^* & u_2^* & \dots & u_N^* \end{bmatrix}$ using `nmpc_fun`.
+1. **Solve NLP:** Compute optimal control 
+   1. $$
+      U^* = \begin{bmatrix} u_1^* & u_2^* & \dots & u_N^* 
+      \end{bmatrix}
+      $$ 
+    using `nmpc_fun`.
 2. **Apply Control:** Extract first control input $u_{apply} = u_1^*$.
-3. **Plant Simulation:** Advance system state $\bar{x}_{k+1} = \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{apply})$.
+3. **Plant Simulation:** Advance system state 
+   1. $$
+      \bar{x}_{k+1} = \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{apply})
+      $$.
 4. **Shift Horizon:** Update guess matrices $(X_g, U_g, \lambda_g)$ for step $k+1$.
 
 ---
