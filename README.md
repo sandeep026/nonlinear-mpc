@@ -2,6 +2,14 @@
 
 This document provides the complete, mathematically rigorous formulation of the Discrete-Time Non-Linear Model Predictive Control (NMPC) problem as constructed by the `Nmpc` class.
 
+## Requirements
+
+* casadi
+* numpy
+* scipy
+* pydantic
+* matplotlib
+
 ---
 
 ## 1. Problem Variables, Parameters, and Dimensions
