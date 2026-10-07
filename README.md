@@ -316,9 +316,10 @@ $$
 
 At each simulation time step $k \in \{0, 1, \dots, N_{sim}-1\}$:
 
-1. **Solve NLP:** Compute optimal control 
+1. **Solve NLP:** Compute optimal control
    1. $$
-      U^* = \begin{bmatrix} u_1^* & u_2^* & \dots & u_N^* 
+      U^* = \begin{bmatrix} 
+      u_1^* & u_2^* & \dots & u_N^*
       \end{bmatrix}
       $$ 
     using `nmpc_fun`.
