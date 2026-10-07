@@ -124,7 +124,13 @@ $$\mathbf{F}_l = \begin{bmatrix} f(t_1, x_1, u_1) & f(t_2, x_2, u_2) & \dots & f
 
 $$\mathbf{F}_r = \begin{bmatrix} f(t_2, x_2, u_1) & f(t_3, x_3, u_2) & \dots & f(t_{N+1}, x_{N+1}, u_N) \end{bmatrix} \in \mathbb{R}^{n_x \times N}$$
 
-The defect matrix $\mathbf{D} = \begin{bmatrix} d_1 & d_2 & \dots & d_N \end{bmatrix} \in \mathbb{R}^{n_x \times N}$ for each method is:
+The defect matrix is defined as
+
+$$
+\mathbf{D} = \begin{bmatrix} d_1 & d_2 & \dots & d_N \end{bmatrix} \in \mathbb{R}^{n_x \times N}
+$$
+
+for each method is:
 
 ### 1. Forward Euler (`fw_euler`)
 * **Stage Defect:** $d_i = (x_{i+1} - x_i) - T_s \cdot f(t_i, x_i, u_i)$
