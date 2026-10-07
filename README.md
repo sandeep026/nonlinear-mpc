@@ -329,9 +329,10 @@ $$
 * **Discretization:** Hermite-Simpson integration (`"her_sim"`)
 * **Cost Matrices:** $Q = I_2$, $R = 2$, $Q_{end} = 20 I_2$
 * **Control Bounds:** $-1.0 \le u_i \le 1.0$
-* **Warm-Start Strategy:** Ipopt options are initialized with $10^{-6}$ boundary pushes and barrier parameter $\mu_{init} = 10^{-6}$. At each closed-loop iteration step $k$:
-  1. The optimal primal state and control solutions $X^*, U^*$ are shifted left by 1 horizon step, duplicating the final column to form the warm-start guess $(X_g, U_g)$.
-  2. The equality Lagrange multipliers $\lambda^*$ are preserved directly as $\lambda_g$.
+* **Warm-Start Strategy:** At every sampling interval
+  1. Ipopt configured for warm start
+  2. The optimal primal state and control solutions $X^*, U^*$ are shifted left by 1 horizon step, duplicating the final column to form the warm-start guess $(X_g, U_g)$.
+  3. The equality Lagrange multipliers $\lambda^*$ are preserved directly as $\lambda_g$.
 
 ---
 
