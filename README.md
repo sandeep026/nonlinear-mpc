@@ -206,7 +206,7 @@ $$
 
 where $\otimes$ denotes the Kronecker product and $I_N$ is the $N \times N$ identity matrix.
 
-### Equality Constraints Vector ($G(W)$)
+### Equality Constraints Vector ($$G(W)$$)
 
 $$G(W) = \begin{bmatrix} x_1 - \bar{x}_0 \\ \text{vec}(\mathbf{D}) \end{bmatrix} = \mathbf{0}_{(n_x(N+1)) \times 1}$$
 
