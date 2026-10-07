@@ -239,7 +239,22 @@ $$\mathbf{U}_{lb} = \begin{bmatrix} u_{lb} & u_{lb} & \dots & u_{lb} \end{bmatri
 
 Stacked bound vectors:
 
-$$W_{lb} = \begin{bmatrix} \text{vec}(\mathbf{X}_{lb}) \\ \text{vec}(\mathbf{U}_{lb}) \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}, \quad W_{ub} = \begin{bmatrix} \text{vec}(\mathbf{X}_{ub}) \\ \text{vec}(\mathbf{U}_{ub}) \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}$$
+$$
+W_{lb} = 
+\begin{bmatrix} 
+\text{vec}(\mathbf{X}_{lb}) \\ 
+\text{vec}(\mathbf{U}_{lb}) 
+\end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}
+$$
+
+$$
+W_{ub} =
+\begin{bmatrix} 
+\text{vec}(\mathbf{X}_{ub}) \\
+ \text{vec}(\mathbf{U}_{ub}) 
+ \end{bmatrix} 
+ \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}
+ $$
 
 ---
 
