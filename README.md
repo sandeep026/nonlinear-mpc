@@ -290,7 +290,20 @@ The generated NLP solver is wrapped into a callable function with the following 
 
 The problem to test and validate the code is taken from exercise 5 of the Syscop course on [Model Predictive Control for Renewable Energy Systems](https://www.syscop.de/teaching/ss2023/model-predictive-control-renewable-energy-systems).
 
-To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum-like system is stabilized from an inverted equilibrium point $\bar{x}_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ to the origin $\begin{bmatrix} 0 & 0 \end{bmatrix}^T$.
+To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum-like system is stabilized from an inverted equilibrium point 
+
+$$
+\bar{x}_0 = 
+\begin{bmatrix} \pi & 0 
+\end{bmatrix}^T
+$$ 
+
+to the origin 
+
+$$
+\begin{bmatrix} 0 & 0 
+\end{bmatrix}^T
+$$
 
 ---
 
@@ -331,7 +344,7 @@ $$
 * **Control Bounds:** $-1.0 \le u_i \le 1.0$
 * **Warm-Start Strategy:** At every sampling interval
   1. Ipopt configured for warm start
-  2. The optimal primal state and control solutions $X^*, U^*$ are shifted left by 1 horizon step, duplicating the final column to form the warm-start guess $(X_g, U_g)$.
+  2. The optimal primal state and control solutions are shifted left by 1 horizon step, duplicating the final column to form the warm-start guess $(X_g, U_g)$.
   3. The equality Lagrange multipliers $\lambda^*$ are preserved directly as $\lambda_g$.
 
 ---
