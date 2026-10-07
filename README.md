@@ -337,10 +337,7 @@ $$
 
 ### Receding Horizon Execution Loop
 
-At each simulation time step 
-$$ 
-k \in \{0, 1, , N_{sim}-1\} 
-$$ :
+At each simulation time step
 
 1. **Solve NLP:** Compute optimal control using `nmpc_fun`.
 2. **Apply Control:** Extract first control input $u_1^*$.
