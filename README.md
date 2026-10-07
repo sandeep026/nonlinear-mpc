@@ -21,7 +21,8 @@ This document provides the complete, mathematically rigorous formulation of the 
 | $u_{lb}, u_{ub}$ | Control lower and upper bounds | $u_{lb} \le u_{ub}$ | $\mathbb{R}^{n_u \times 1}$ |
 | $\bar{x}_0$ | Initial state numerical parameter | Parameter | $\mathbb{R}^{n_x \times 1}$ |
 | $t_0$ | Initial time parameter | Parameter | $\mathbb{R}$ |
-
+| $x_{ref}$ | state reference parameter | Parameter | $\mathbb{R}^{n_x \times n+1}$ |
+| $u_{ref}$ | control reference parameter | Parameter | $\mathbb{R}^{n_x \times n+1}$ |
 ---
 
 ## 2. Matrix and Vector Structures
@@ -74,7 +75,36 @@ States are parameterized at $N+1$ discrete temporal grid nodes $t_1, t_2, \dots,
 
 Given $N$, $T_s$, $t_0$, and initial state $\bar{x}_0$, the NMPC minimizes tracking error over the prediction horizon:
 
-$$\begin{aligned} \min_{X, U} \quad & J(X, U) = \frac{1}{2} \left[ \sum_{i=1}^{N} \left( (x_i - x_{ref, i})^T (Q \cdot T_s) (x_i - x_{ref, i}) + (u_i - u_{ref, i})^T (R \cdot T_s) (u_i - u_{ref, i}) \right) \right. \\ & \qquad \qquad \qquad \left. + (x_{N+1} - x_{ref, N+1})^T Q_{end} (x_{N+1} - x_{ref, N+1}) \right] \\ \text{s.t.} \quad & x_1 - \bar{x}_0 = \mathbf{0}_{n_x \times 1}, \\ & d_i(x_i, x_{i+1}, u_i, t_i, t_{i+1}) = \mathbf{0}_{n_x \times 1}, \quad \forall i \in \{1, 2, \dots, N\}, \\ & x_{lb} \le x_i \le x_{ub}, \quad \forall i \in \{1, 2, \dots, N+1\}, \\ & u_{lb} \le u_i \le u_{ub}, \quad \forall i \in \{1, 2, \dots, N\} \end{aligned}$$
+$$
+J=\frac{1}{2} \left[ J_{Lagrange} + J_{Mayer}   \right]
+$$
+
+$$
+ J_{Lagrange}=\sum_{i=1}^{N} \left( (x_i - x_{ref, i})^T (Q \cdot T_s) (x_i - x_{ref, i}) + (u_i - u_{ref, i})^T (R \cdot T_s) (u_i - u_{ref, i}) \right) 
+$$
+
+$$
+J_{Mayer}=(x_{N+1} - x_{ref, N+1})^T Q_{end} (x_{N+1} - x_{ref, N+1})
+$$
+
+subject to following equality constraints and simple bounds on the state
+and control.
+
+$$
+x_1 = \bar{x}_0
+$$
+
+$$
+d_i(x_i, x_{i+1}, u_i, t_i, t_{i+1})=0, \quad \forall i \in \{1, 2, \dots, N\}
+$$
+
+$$
+x_{lb} \le x_i \le x_{ub}, \quad \forall i \in \{1, 2, \dots, N+1\}
+$$
+
+$$
+u_{lb} \le u_i \le u_{ub}, \quad \forall i \in \{1, 2, \dots, N\}
+$$
 
 ---
 
@@ -170,6 +200,8 @@ The generated NLP solver is wrapped into a callable function with the following 
 3. `lam`: Optimal equality constraint Lagrange multipliers $\lambda^* \in \mathbb{R}^{n_x(N+1) \times 1}$
 
 ## 8. Closed-Loop Simulation Example
+
+The problem to test and validate the code is taken from exercise 5 of the Syscop course on [Model Predictive Control for Renewable Energy Systems](https://www.syscop.de/teaching/ss2023/model-predictive-control-renewable-energy-systems).
 
 To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum-like system is stabilized from an inverted equilibrium point $\bar{x}_0 = \begin{bmatrix} \pi & 0 \end{bmatrix}^T$ to the origin $\begin{bmatrix} 0 & 0 \end{bmatrix}^T$.
 
