@@ -157,7 +157,8 @@ for each method is:
 
 ### 4. Hermite-Simpson Integration (`her_sim`)
 
-**Midpoint Matrices:**
+Midpoint Matrices are defined as follows,
+
 $$
 X_m = \frac{1}{2}(X_r + X_l) + \frac{T_s}{8}(\mathbf{F}_l - \mathbf{F}_r) \in \mathbb{R}^{n_x \times N}
 $$
