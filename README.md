@@ -188,7 +188,13 @@ $$\Delta W = W - W_{ref} = \begin{bmatrix} \text{vec}(X - X_{ref}) \\ \text{vec}
 
 ### Block Hessian Matrix ($H$)
 
-$$H = \begin{bmatrix}  I_N \otimes (Q \cdot T_s) & \mathbf{0}_{n_x N \times n_x} & \mathbf{0}_{n_x N \times n_u N} \\  \mathbf{0}_{n_x \times n_x N} & Q_{end} & \mathbf{0}_{n_x \times n_u N} \\  \mathbf{0}_{n_u N \times n_x N} & \mathbf{0}_{n_u N \times n_x} & I_N \otimes (R \cdot T_s)  \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times (n_x(N+1) + n_u N)}$$
+$$
+H = \begin{bmatrix}  
+I_N \otimes (Q \cdot T_s) & \mathbf{0}_{n_x N \times n_x} & \mathbf{0}_{n_x N \times n_u N} \\  
+\mathbf{0}_{n_x \times n_x N} & Q_{end} & \mathbf{0}_{n_x \times n_u N} \\  
+\mathbf{0}_{n_u N \times n_x N} & \mathbf{0}_{n_u N \times n_x} & I_N \otimes (R \cdot T_s)  \end{bmatrix} 
+\in \mathbb{R}^{(n_x(N+1) + n_u N) \times (n_x(N+1) + n_u N)}
+$$
 
 where $\otimes$ denotes the Kronecker product and $I_N$ is the $N \times N$ identity matrix.
 
