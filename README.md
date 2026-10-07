@@ -23,17 +23,20 @@ This document provides the complete, mathematically rigorous formulation of the 
 | $t_0$ | Initial time parameter | Parameter | $\mathbb{R}$ |
 | $x_{ref}$ | state reference parameter | Parameter | $\mathbb{R}^{n_x \times n+1}$ |
 | $u_{ref}$ | control reference parameter | Parameter | $\mathbb{R}^{n_x \times n+1}$ |
+
 ---
 
 ## 2. Matrix and Vector Structures
 
 ### Stage Decision and Reference Vectors
+
 * **States:** $x_i \in \mathbb{R}^{n_x \times 1}$ for $i \in \{1, 2, \dots, N+1\}$
 * **Controls:** $u_i \in \mathbb{R}^{n_u \times 1}$ for $i \in \{1, 2, \dots, N\}$
 * **State References:** $x_{ref, i} \in \mathbb{R}^{n_x \times 1}$ for $i \in \{1, 2, \dots, N+1\}$
 * **Control References:** $u_{ref, i} \in \mathbb{R}^{n_u \times 1}$ for $i \in \{1, 2, \dots, N\}$
 
 ### Trajectory Matrices (Horizontal Concatenation)
+
 $$X = \begin{bmatrix} x_1 & x_2 & \dots & x_{N+1} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}$$
 
 $$U = \begin{bmatrix} u_1 & u_2 & \dots & u_N \end{bmatrix} \in \mathbb{R}^{n_u \times N}$$
@@ -43,9 +46,11 @@ $$X_{ref} = \begin{bmatrix} x_{ref, 1} & x_{ref, 2} & \dots & x_{ref, N+1} \end{
 $$U_{ref} = \begin{bmatrix} u_{ref, 1} & u_{ref, 2} & \dots & u_{ref, N} \end{bmatrix} \in \mathbb{R}^{n_u \times N}$$
 
 ### Time Vector
+
 $$t = \begin{bmatrix} t_1 & t_2 & \dots & t_{N+1} \end{bmatrix} \in \mathbb{R}^{1 \times (N+1)}, \quad \text{where } t_i = t_0 + (i-1)T_s$$
 
 ### Stacked Optimization Decision Vector ($W$)
+
 Decision matrices are flattened column-wise ($\text{vec}$) and vertically stacked into a single primal vector $W$:
 
 $$\text{vec}(X) = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{N+1} \end{bmatrix} \in \mathbb{R}^{n_x(N+1) \times 1}, \quad \text{vec}(U) = \begin{bmatrix} u_1 \\ u_2 \\ \vdots \\ u_N \end{bmatrix} \in \mathbb{R}^{n_u N \times 1}$$
@@ -57,9 +62,11 @@ $$W = \begin{bmatrix} \text{vec}(X) \\ \text{vec}(U) \end{bmatrix} \in \mathbb{R
 ## 3. Optimal Control Transcription & Control Parameterization
 
 ### Direct Transcription Framework
+
 The continuous-time optimal control problem (OCP) is converted into a finite-dimensional Non-Linear Program (NLP) using **Direct Transcription** (Simultaneous Method). In this approach, both state trajectory values at discrete nodes $X$ and control trajectory inputs $U$ are optimized simultaneously as decision variables, while dynamic differential equations are discretized into algebraic defect constraints.
 
 ### Control Parameterization (Zero-Order Hold)
+
 The control trajectory $u(t)$ is parameterized using a **Piecewise Constant (Zero-Order Hold)** model over each sampling interval:
 
 $$u(t) = u_i, \quad \forall t \in [t_i, t_{i+1}), \quad i \in \{1, 2, \dots, N\}$$
@@ -67,6 +74,7 @@ $$u(t) = u_i, \quad \forall t \in [t_i, t_{i+1}), \quad i \in \{1, 2, \dots, N\}
 As a result, control decision variables are defined only at stage starts $u_1, u_2, \dots, u_N$, giving $N$ control vectors.
 
 ### State Discretization & Collocation Nodes
+
 States are parameterized at $N+1$ discrete temporal grid nodes $t_1, t_2, \dots, t_{N+1}$. Inter-node dynamic continuity is enforced by numerical quadrature schemes generating equality defect constraints $d_i = \mathbf{0}_{n_x \times 1}$ for each step.
 
 ---
@@ -133,18 +141,22 @@ $$
 for each method is:
 
 ### 1. Forward Euler (`fw_euler`)
+
 * **Stage Defect:** $d_i = (x_{i+1} - x_i) - T_s \cdot f(t_i, x_i, u_i)$
 * **Defect Matrix:** $\mathbf{D} = (X_r - X_l) - T_s \cdot \mathbf{F}_l$
 
 ### 2. Backward Euler (`bw_euler`)
+
 * **Stage Defect:** $d_i = (x_{i+1} - x_i) - T_s \cdot f(t_{i+1}, x_{i+1}, u_i)$
 * **Defect Matrix:** $\mathbf{D} = (X_r - X_l) - T_s \cdot \mathbf{F}_r$
 
 ### 3. Trapezoidal Method (`trap`)
+
 * **Stage Defect:** $d_i = (x_{i+1} - x_i) - \frac{T_s}{2} \left[ f(t_i, x_i, u_i) + f(t_{i+1}, x_{i+1}, u_i) \right]$
 * **Defect Matrix:** $\mathbf{D} = (X_r - X_l) - \frac{T_s}{2} (\mathbf{F}_l + \mathbf{F}_r)$
 
 ### 4. Hermite-Simpson Integration (`her_sim`)
+
 * **Midpoint Matrices:**
   
   $$
@@ -171,19 +183,23 @@ The optimal control problem is cast into a standard Non-Linear Program (NLP):
 $$\begin{aligned} \min_{W} \quad & J(\Delta W) = \frac{1}{2} \Delta W^T H \Delta W \\ \text{s.t.} \quad & G(W) = \mathbf{0}_{(n_x(N+1)) \times 1}, \\ & W_{lb} \le W \le W_{ub} \end{aligned}$$
 
 ### Tracking Error Vector ($\Delta W$)
+
 $$\Delta W = W - W_{ref} = \begin{bmatrix} \text{vec}(X - X_{ref}) \\ \text{vec}(U - U_{ref}) \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}$$
 
 ### Block Hessian Matrix ($H$)
+
 $$H = \begin{bmatrix}  I_N \otimes (Q \cdot T_s) & \mathbf{0}_{n_x N \times n_x} & \mathbf{0}_{n_x N \times n_u N} \\  \mathbf{0}_{n_x \times n_x N} & Q_{end} & \mathbf{0}_{n_x \times n_u N} \\  \mathbf{0}_{n_u N \times n_x N} & \mathbf{0}_{n_u N \times n_x} & I_N \otimes (R \cdot T_s)  \end{bmatrix} \in \mathbb{R}^{(n_x(N+1) + n_u N) \times (n_x(N+1) + n_u N)}$$
 
 where $\otimes$ denotes the Kronecker product and $I_N$ is the $N \times N$ identity matrix.
 
 ### Equality Constraints Vector ($G(W)$)
+
 $$G(W) = \begin{bmatrix} x_1 - \bar{x}_0 \\ \text{vec}(\mathbf{D}) \end{bmatrix} = \mathbf{0}_{(n_x(N+1)) \times 1}$$
 
 where $\text{vec}(\mathbf{D}) = \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_N \end{bmatrix} \in \mathbb{R}^{n_x N \times 1}$.
 
 ### Stacked Variable Bounds
+
 Repeated matrix bounds across horizon:
 
 $$\mathbf{X}_{lb} = \begin{bmatrix} x_{lb} & x_{lb} & \dots & x_{lb} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}, \quad \mathbf{X}_{ub} = \begin{bmatrix} x_{ub} & x_{ub} & \dots & x_{ub} \end{bmatrix} \in \mathbb{R}^{n_x \times (N+1)}$$
@@ -201,6 +217,7 @@ $$W_{lb} = \begin{bmatrix} \text{vec}(\mathbf{X}_{lb}) \\ \text{vec}(\mathbf{U}_
 The generated NLP solver is wrapped into a callable function with the following input and output structure:
 
 ### Inputs
+
 1. `X`: Initial guess for state matrix trajectory $\in \mathbb{R}^{n_x \times (N+1)}$
 2. `U`: Initial guess for control matrix trajectory $\in \mathbb{R}^{n_u \times N}$
 3. `lam`: Initial guess for equality constraint multipliers $\lambda \in \mathbb{R}^{n_x(N+1) \times 1}$
@@ -210,6 +227,7 @@ The generated NLP solver is wrapped into a callable function with the following 
 7. `Uref`: Control reference matrix trajectory $U_{ref} \in \mathbb{R}^{n_u \times N}$
 
 ### Outputs
+
 1. `X`: Optimal state matrix trajectory $X^* \in \mathbb{R}^{n_x \times (N+1)}$
 2. `U`: Optimal control matrix trajectory $U^* \in \mathbb{R}^{n_u \times N}$
 3. `lam`: Optimal equality constraint Lagrange multipliers $\lambda^* \in \mathbb{R}^{n_x(N+1) \times 1}$
@@ -245,6 +263,7 @@ $$\dot{x}(t) = f(t, x, u) = \begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix}
 ### Receding Horizon Execution Loop
 
 At each simulation time step $k \in \{0, 1, \dots, N_{sim}-1\}$:
+
 1. **Solve NLP:** Compute optimal control $U^* = \begin{bmatrix} u_1^* & u_2^* & \dots & u_N^* \end{bmatrix}$ using `nmpc_fun`.
 2. **Apply Control:** Extract first control input $u_{apply} = u_1^*$.
 3. **Plant Simulation:** Advance system state $\bar{x}_{k+1} = \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{apply})$.
