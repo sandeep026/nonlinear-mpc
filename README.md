@@ -219,8 +219,9 @@ $$
 where 
 
 $$
-\text{vec}(\mathbf{D}) = 
-\begin{bmatrix} d_1 \\ 
+\text{vec}(\mathbf{D}) 
+= \begin{bmatrix} 
+d_1 \\ 
 d_2 \\ 
 \vdots \\ 
 d_N 
