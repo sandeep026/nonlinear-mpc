@@ -14,6 +14,20 @@ This document provides the complete, mathematically rigorous formulation of the 
 
 ## 1. Problem Variables, Parameters, and Dimensions
 
+### Optimal control problem for NMPC
+
+$$
+\min_{u(t)} J = \frac{1}{2} \int_{t_0}^{t_f=t_0+T_p} \left[ (x(t) - x_{\text{ref}}(t))^T Q (x(t) - x_{\text{ref}}(t)) + (u(t) - u_{\text{ref}}(t))^T R (u(t) - u_{\text{ref}}(t)) \right] dt + \frac{1}{2} (x(t_f) - x_{\text{ref}}(t_f))^T Q_{\text{end}} (x(t_f) - x_{\text{ref}}(t_f))$$
+
+**subject to:**
+
+$$\begin{aligned}
+\dot{x}(t) &= f(t, x(t), u(t)), \quad \forall t \in [t_0, t_f] \\
+x(t_0) &= \bar{x}_0 \\
+x_{\text{lb}} &\le x(t) \le x_{\text{ub}}, \quad \forall t \in [t_0, t_f] \\
+u_{\text{lb}} &\le u(t) \le u_{\text{ub}}, \quad \forall t \in [t_0, t_f]
+\end{aligned}$$
+
 ### Variables and Parameters
 
 | Symbol | Description | Type / Constraint | Dimension |
