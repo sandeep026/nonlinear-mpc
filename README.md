@@ -180,7 +180,11 @@ $$
 
 The optimal control problem is cast into a standard Non-Linear Program (NLP):
 
-$$\begin{aligned} \min_{W} \quad & J(\Delta W) = \frac{1}{2} \Delta W^T H \Delta W \\ \text{s.t.} \quad & G(W) = \mathbf{0}_{(n_x(N+1)) \times 1}, \\ & W_{lb} \le W \le W_{ub} \end{aligned}$$
+$$\begin{aligned} 
+\min_{W} \quad & J(\Delta W) = \frac{1}{2} \Delta W^T H \Delta W \\ 
+\text{s.t.} \quad & G(W) = \mathbf{0}_{(n_x(N+1)) \times 1}, \\ 
+& W_{lb} \le W \le W_{ub} 
+\end{aligned}$$
 
 ### Tracking Error Vector ($\Delta W$)
 
