@@ -227,7 +227,7 @@ d_2 \\
 d_N
 \end{bmatrix}
 \in \mathbb{R}^{n_x N \times 1}
-$$.
+$$
 
 ### Stacked Variable Bounds
 
@@ -347,10 +347,7 @@ At each simulation time step $k \in \{0, 1, \dots, N_{sim}-1\}$:
       $$ 
     using `nmpc_fun`.
 2. **Apply Control:** Extract first control input $u_{apply} = u_1^*$.
-3. **Plant Simulation:** Advance system state 
-   1. $$
-      \bar{x}_{k+1} = \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{apply})
-      $$.
+3. **Plant Simulation:** Advance system state $\bar{x}_{k+1} = \bar{x}_k + T_s \cdot f(t_k, \bar{x}_k, u_{apply})$ .
 4. **Shift Horizon:** Update guess matrices $(X_g, U_g, \lambda_g)$ for step $k+1$.
 
 ---
