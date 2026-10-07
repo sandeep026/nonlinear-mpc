@@ -275,7 +275,17 @@ To demonstrate the NMPC framework in closed-loop operation, a nonlinear pendulum
 
 The continuous-time state vector $x(t) = \begin{bmatrix} x_1(t) & x_2(t) \end{bmatrix}^T \in \mathbb{R}^{2 \times 1}$ and control input $u(t) \in \mathbb{R}^{1 \times 1}$ are governed by:
 
-$$\dot{x}(t) = f(t, x, u) = \begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} = \begin{bmatrix} x_2 \\ \sin(x_1) - 0.1 x_2 + u \cos(x_2) \end{bmatrix}$$
+$$
+\dot{x}(t) 
+= f(t, x, u) 
+= \begin{bmatrix} 
+\dot{x}_1 \\ 
+\dot{x}_2 
+\end{bmatrix} 
+= \begin{bmatrix} x_2 \\
+ \sin(x_1) - 0.1 x_2 + u \cos(x_2) 
+ \end{bmatrix}
+ $$
 
 ---
 
