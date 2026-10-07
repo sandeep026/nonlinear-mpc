@@ -48,7 +48,29 @@ u_{\text{lb}} &\le u(t) \le u_{\text{ub}}, \quad \forall t \in [t_0, t_f]
 
 ---
 
-## 2. Matrix and Vector Structures
+## 2. Optimal Control Transcription & Control Parameterization
+
+### Direct Transcription Framework
+
+The continuous-time optimal control problem (OCP) is converted into a finite-dimensional Non-Linear Program (NLP) using **Direct Transcription** (Simultaneous Method). In this approach, both state trajectory values at discrete nodes $X$ and control trajectory inputs $U$ are optimized simultaneously as decision variables, while dynamic differential equations are discretized into algebraic defect constraints.
+
+### Control Parameterization (Zero-Order Hold)
+
+The control trajectory $u(t)$ is parameterized using a **Piecewise Constant (Zero-Order Hold)** model over each sampling interval:
+
+$$u(t) = u_i, \quad \forall t \in [t_i, t_{i+1}), \quad i \in \{1, 2, \dots, N\}$$
+
+As a result, control decision variables are defined only at stage starts $u_1, u_2, \dots, u_N$, giving $N$ control vectors.
+
+### State Discretization & Collocation Nodes
+
+States are parameterized at $N+1$ discrete temporal grid nodes $t_1, t_2, \dots, t_{N+1}$. Inter-node dynamic continuity is enforced by numerical quadrature schemes generating equality defect constraints $d_i = \mathbf{0}_{n_x \times 1}$ for each step.
+
+
+
+---
+
+## 3. Matrix and Vector Structures
 
 ### Stage Decision and Reference Vectors
 
@@ -104,25 +126,6 @@ W =
 \in \mathbb{R}^{(n_x(N+1) + n_u N) \times 1}
 $$
 
----
-
-## 3. Optimal Control Transcription & Control Parameterization
-
-### Direct Transcription Framework
-
-The continuous-time optimal control problem (OCP) is converted into a finite-dimensional Non-Linear Program (NLP) using **Direct Transcription** (Simultaneous Method). In this approach, both state trajectory values at discrete nodes $X$ and control trajectory inputs $U$ are optimized simultaneously as decision variables, while dynamic differential equations are discretized into algebraic defect constraints.
-
-### Control Parameterization (Zero-Order Hold)
-
-The control trajectory $u(t)$ is parameterized using a **Piecewise Constant (Zero-Order Hold)** model over each sampling interval:
-
-$$u(t) = u_i, \quad \forall t \in [t_i, t_{i+1}), \quad i \in \{1, 2, \dots, N\}$$
-
-As a result, control decision variables are defined only at stage starts $u_1, u_2, \dots, u_N$, giving $N$ control vectors.
-
-### State Discretization & Collocation Nodes
-
-States are parameterized at $N+1$ discrete temporal grid nodes $t_1, t_2, \dots, t_{N+1}$. Inter-node dynamic continuity is enforced by numerical quadrature schemes generating equality defect constraints $d_i = \mathbf{0}_{n_x \times 1}$ for each step.
 
 ---
 
@@ -474,7 +477,7 @@ def closed_loop():
     x0 = cs.DM([cs.pi, 0])
     Xref = cs.DM.zeros(nx, n + 1)
     Uref = cs.DM.zeros(nu, n)
-    nsim = 200
+    nsim = 100
 
     tsim = [0.0]
     Xsim = [x0]
