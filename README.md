@@ -208,9 +208,25 @@ where $\otimes$ denotes the Kronecker product and $I_N$ is the $N \times N$ iden
 
 ### Equality Constraints Vector ($$G(W)$$)
 
-$$G(W) = \begin{bmatrix} x_1 - \bar{x}_0 \\ \text{vec}(\mathbf{D}) \end{bmatrix} = \mathbf{0}_{(n_x(N+1)) \times 1}$$
+$$
+G(W) = \begin{bmatrix} 
+x_1 - \bar{x}_0 \\ 
+\text{vec}(\mathbf{D}) 
+\end{bmatrix} 
+= \mathbf{0}
+$$
 
-where $\text{vec}(\mathbf{D}) = \begin{bmatrix} d_1 \\ d_2 \\ \vdots \\ d_N \end{bmatrix} \in \mathbb{R}^{n_x N \times 1}$.
+where 
+
+$$
+\text{vec}(\mathbf{D}) = 
+\begin{bmatrix} d_1 \\ 
+d_2 \\ 
+\vdots \\ 
+d_N 
+\end{bmatrix} 
+\in \mathbb{R}^{n_x N \times 1}
+$$.
 
 ### Stacked Variable Bounds
 
