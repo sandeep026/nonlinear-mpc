@@ -17,7 +17,16 @@ This document provides the complete, mathematically rigorous formulation of the 
 ### Optimal control problem for NMPC
 
 $$
-\min_{u(t)} J = \frac{1}{2} \int_{t_0}^{t_f=t_0+T_p} \left[ (x(t) - x_{\text{ref}}(t))^T Q (x(t) - x_{\text{ref}}(t)) + (u(t) - u_{\text{ref}}(t))^T R (u(t) - u_{\text{ref}}(t)) \right] dt + \frac{1}{2} (x(t_f) - x_{\text{ref}}(t_f))^T Q_{\text{end}} (x(t_f) - x_{\text{ref}}(t_f))$$
+\min_{u(t)} J = J_{Lagrange} + J_{Mayer}
+$$
+
+$$
+J_{Lagrange}=\frac{1}{2} \int_{t_0}^{t_f=t_0+T_p} \left[ (x(t) - x_{\text{ref}}(t))^T Q (x(t) - x_{\text{ref}}(t)) + (u(t) - u_{\text{ref}}(t))^T R (u(t) - u_{\text{ref}}(t)) \right] dt
+$$
+
+$$
+J_{Mayer}=\frac{1}{2} (x(t_f) - x_{\text{ref}}(t_f))^T Q_{\text{end}} (x(t_f) - x_{\text{ref}}(t_f))
+$$
 
 **subject to:**
 
